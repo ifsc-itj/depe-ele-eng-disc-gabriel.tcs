@@ -1,0 +1,209 @@
+(footprint "SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL footprint")
+	(tags "SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL footprint C9676")
+	(property "Reference" "REF**"
+		(at 0.5 0 0)
+		(layer "F.SilkS")
+		(uuid "deebfe7b-2ded-41c4-82da-8fec0d0f0260")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL"
+		(at 0 4.705105 0)
+		(layer "F.Fab")
+		(uuid "04d8ba35-b720-4ae5-8a61-de205a7e5bf6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d183287c-c2f0-4025-9d3d-763d7bdce0c6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "38abe0b3-ac04-438e-b25e-06d22c00f56b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.5 -1.5)
+		(end -2.5 -0.726289)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "da92ba21-add5-4d1a-b363-d39cff35c006")
+	)
+	(fp_line
+		(start -2.5 -1.5)
+		(end 2.5 -1.5)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3508942c-2521-4467-b6f3-968ea9933bed")
+	)
+	(fp_line
+		(start -2.5 1.5)
+		(end -2.5 0.726568)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ef22217f-2d17-4252-bc40-ab88567a83e3")
+	)
+	(fp_line
+		(start -2.5 1.5)
+		(end 2.5 1.5)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6cf63b48-2b25-4a67-89b4-6a6b0400ea2a")
+	)
+	(fp_line
+		(start 2.5 -1.5)
+		(end 2.5 1.5)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "14de7eeb-19e7-4b51-ad5f-ad8fd2ff894d")
+	)
+	(fp_arc
+		(start -2.495098 -0.726289)
+		(mid -1.812145 0.002452)
+		(end -2.499999 0.726568)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2cef9ac1-ab53-4dc1-9e09-07200df23e75")
+	)
+	(fp_circle
+		(center -2.413005 2.540005)
+		(end -2.383033 2.540005)
+		(stroke
+			(width 0.059995)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "3fbb592d-79de-4427-9853-b886b1071e8a")
+	)
+	(fp_circle
+		(center -1.778004 1.016002)
+		(end -1.627889 1.016002)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "4942473e-f51f-46de-8e54-d3a34a6b6693")
+	)
+	(fp_circle
+		(center -1.905004 3.400051)
+		(end -1.75489 3.400051)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "9d08e829-b5d4-4c03-94c1-cf074ca0fd32")
+	)
+	(pad "1" smd oval
+		(at -1.905004 2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "9d580ace-39b9-4a5b-a2af-2be8722c0278")
+	)
+	(pad "2" smd oval
+		(at -0.635001 2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "9fafd0fb-599f-4e5c-b85a-a1f6db39f7cb")
+	)
+	(pad "3" smd oval
+		(at 0.635001 2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "497e00d5-a3d3-446f-b481-a0e9828bb964")
+	)
+	(pad "4" smd oval
+		(at 1.905004 2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "772fb8a2-c564-4867-b62e-888949415db5")
+	)
+	(pad "5" smd oval
+		(at 1.905004 -2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "989820ff-de75-4786-b882-0450c85c915a")
+	)
+	(pad "6" smd oval
+		(at 0.635001 -2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "387e975c-0701-473c-a6b0-8042161f031a")
+	)
+	(pad "7" smd oval
+		(at -0.635001 -2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "32733f25-e5f7-47ca-b8a3-17f76ba2e68f")
+	)
+	(pad "8" smd oval
+		(at -1.905004 -2.705105)
+		(size 0.568402 1.950216)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "2467e966-4a8d-4bb3-a3ba-58c4d8883980")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

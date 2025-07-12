@@ -17,6 +17,10 @@ Projeto de uma placa de aquisição de sinais biomédicos  de 3 canais desenvolv
     - [Filtro Notch](#filtro-notch)
     - [Pré-amplificação](#pré-amplificação)
     - [Filtro passa-baixas](#filtro-passa-baixas)
+    - [Ganho e *Offset*](#ganho-e-offset)
+  - [Circuito Completo (v2)](#circuito-completo-v2)
+    - [ESP-32 S3 - Características de Interesse](#esp-32-s3---características-de-interesse)
+  - [Plataforma de Aquisição (MYo\_BoARD)](#plataforma-de-aquisição-myo_board)
 
 ---
 ## Introdução
@@ -67,15 +71,18 @@ O EMG, por sua vez, capta a atividade elétrica dos músculos esqueléticos, res
 
 ### Fluxograma do sistema
 
-O sistema foi desenvolvido conforme o fluxograma a seguir.
+O sistema foi desenvolvido conforme os fluxogramas a seguir.
 
-| <img src="./img/diagrama.png" width="575"><br> |
+| <img src="./img/diagrama.png" width="575"><br><em>Fluxograma da versão com filtro Notch e alimentação simétrica (v1).</em> |
+|:--:|
+
+| <img src="./img/fluxo_v2.png" width="575"><br><em>Fluxograma da versão sem filtro Notch e alimentação assimétrica (v2).</em> |
 |:--:|
 
 ## Ensaio de frequência nos amplificadores - *AC Sweep*
 
 <p style="text-align: justify;">
-A fim de verificar a resposta em frequência dos amplificadores de instrumentação, realizou-se um ensaio que consiste em variar a frequência do sinal de entrada e medir o sinal na saída do amplificador. Dessa maneira, é possível obter um gráfico que descreve a variação do ganho em função do aumento da frequência a partir dos valores de entrada e saída medidos. O circuito para ensaio dos amplificadores foram montados conforme recomendação do <em>datasheet</em> de cada um deles e consta na Figura 1. A resposta de cada amplificador consta na Figura 2. Os equipamentos utilizados para esse ensaio foram: osciloscópio digital e gerador de funções, ambos disponibilizados pelo <em>campus</em>.
+A fim de verificar a resposta em frequência dos amplificadores de instrumentação, realizou-se um ensaio que consiste em variar a frequência do sinal de entrada e medir o sinal na saída do amplificador. Dessa maneira, é possível obter um gráfico que descreve a variação do ganho em função do aumento da frequência a partir dos valores de entrada e saída medidos. O circuito para ensaio dos amplificadores foram montados conforme recomendação do <em>datasheet</em> de cada um deles (vide Figura 1). Tanto o INA128 e o AD623 possuem a mesma configuração de pinos e, portanto, utilizou-se o mesmo circuito para ambos, diferenciando apenas no valor dos resistores de ganho. A resposta de cada amplificador consta na Figura 2. Os equipamentos utilizados para esse ensaio foram: osciloscópio digital e gerador de funções, ambos disponibilizados pelo <em>campus</em>.
 </p>
 
 | <img src="./img/ac_sweep_circuit.png" width="300"><br><em>Figura 1 – Circuito AC Sweep</em> |
@@ -88,7 +95,7 @@ A fim de verificar a resposta em frequência dos amplificadores de instrumentaç
 ### Filtro Notch
 
 <p style="text-align: justify;">
-O primeiro estágio do circuito consiste em um filtro que remova sinais de frequência de 60 Hz a fim de evitar interferências ruidosas oriundas da rede. Para tal filtro, utilizou-se a topologia Duplo-T, a qual permite selecionar a frequência central e fator de qualidade de forma independente. O circuito obtido e a sua respectiva resposta constam nas Figuras 3 e 4, respectivamente. A Figura 5 mostra a resposta do circuito já montado e testado em bancada.
+O primeiro estágio do circuito consiste em um filtro que remova sinais de frequência de 60 Hz a fim de evitar interferências ruidosas oriundas da rede. Para tal filtro, utilizou-se a topologia Duplo-T, a qual permite selecionar a frequência central e o fator de qualidade de forma independente. O circuito obtido e a sua respectiva resposta constam nas Figuras 3 e 4, respectivamente. A Figura 5 mostra a resposta do circuito já montado e testado em bancada.
 </p>
 
 | <img src="./simulations/notch_filter/outputs/circuit.png" width="500"><br><em>Figura 3 – Circuito do Filtro Notch</em> |
@@ -102,13 +109,13 @@ O primeiro estágio do circuito consiste em um filtro que remova sinais de frequ
 
 ### Pré-amplificação
 
-<p>
-O segundo estágio consiste em um amplificador de instrumentação que mitiga o ruído de modo comum do sinal diferencial. Portanto, o ganho nesse estágio pode ser mais baixo, optando-se, então, por dar um maior ganho em estágios posteriores. Devido a banda de passagem do AD623AN ser mais linear que a do INA128P, optou-se por utilizá-lo no circuito dessa etapa. O circuito utilizado nessa etapa é o mesmo da Figura 1, o qual é o recomendado pelo fabricante no <em>datasheet</em>
+<p style="text-align: justify;">
+O segundo estágio consiste em um amplificador de instrumentação que mitiga o ruído de modo comum (<em>CMRR</em>) do sinal diferencial. Portanto, o ganho nesse estágio pode ser mais baixo, optando-se, então, por dar um maior ganho em estágios posteriores. Devido a banda de passagem do AD623AN ser mais linear que a do INA128P, optou-se por utilizá-lo no circuito dessa etapa. O circuito utilizado nessa etapa é o mesmo da Figura 1, o qual é o recomendado pelo fabricante no <em>datasheet</em>
 </p>
 
 ### Filtro passa-baixas
 
-<p>
+<p style="text-align: justify;">
 O terceiro estágio consiste em um filtro passa-baixas de segunda ordem, topologia Sallen-Key. Esse filtro possui frequência de corte em 1 kHz. O circuito utilizado foi o da Figura 6. A Figura 7 Mostra a resposta em frequência obtida para o circuito em simulação.
 </p>
 
@@ -117,3 +124,44 @@ O terceiro estágio consiste em um filtro passa-baixas de segunda ordem, topolog
 
 | <img src="./simulations/low_pass_filter_2/output/low_pass.png" width="400"><br><em>Figura 7 – Resposta em frequência do filtro Passa-baixas (Simulado)</em> |
 |:--:|
+
+### Ganho e *Offset*
+
+<p style="text-align: justify;">
+Nessa etapa, o sinal é condicionado dentro dos limites de operação do ESP-32 S3. É dado um ganho variável de 1 à 201 e um deslocamento de tensão DC de, aproximadamente, 1,65 V.
+</p>
+
+## Circuito Completo (v2)
+
+<p style="text-align: justify;">
+Dado às necessidades de condicionamento do sinal serem cruciais à esse projeto e à algumas dificuldades encontradas durante a montagem e testes do circuito em <em>protoboard</em>, optou-se por não utilizar o filtro Notch (Duplo-T) devido ao mesmo exigir uma alimentaçã simétrica, o que trouxe dificuldades na montagem e teste em bancada, inviabilizando, então, a validação de seu funcionamento. Com isso, utilizou-se uma configuração já conhecida e validada em projetos anteriores com alimentação simétrica, mas sem o filtro analógico Notch. O esquemátio do circuito completo e o layout da placa de circuito impresso (PCI) constam nas figuras abaixo.
+</p>
+
+| <img src="./pcb/MYo_BoARD_v2/img/circ_complete.png" width="625"><br><em>Circuito Completo</em> |
+|:--:|
+
+| <img src="./pcb/MYo_BoARD_v2/img/3d_top.png" width="525"><br><em>Visão Superior da PCI</em> |
+|:--:|
+
+| <img src="./pcb/MYo_BoARD_v2/img/3d_bottom.png" width="525"><br><em>Visão Inferior da PCI</em> |
+|:--:|
+
+<p style="text-align: justify;">
+A ideia final do projeto é que as placas sejam módulos independentes que podem ser concatenados, formando uma rede de aquisição de multiplos canais, a depender da aplicação e da capacidade do microcontrolador adotado para o projeto. No presente projeto a proposta são 3 canais de aquisição e a utilização do ESP-32 S3.
+</p>
+
+### ESP-32 S3 - Características de Interesse
+
+| Parâmetro                          | Valor                                                                                                             |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Canalização ADC**                | 2 × SAR ADC de 12 bits, até 20 canais (ADC1\_CH0…CH9 disponíveis com Wi-Fi; ADC2 indisponível quando Wi-Fi ativo) |
+| **Taxa máxima de amostragem**      | 100 kSPS (100 000 samples/s)                                                                                      |
+| **Taxa efetiva por canal**         | ≈ 33 kSPS por canal (100 kSPS ÷ 3)                                                                                |
+| **Tempo de conversão**             | ≈ 10 µs (1 / 100 kSPS)                                                                                            |
+| **Faixa de tensão de entrada**     | –0.3 … +3.6 V                                                                                                     |
+| **Memória interna**                | ROM: 384 KB<br>SRAM: 512 KB<br>RTC SRAM: 16 KB                                                                    |
+| **Recomendação de desacoplamento** | 100 nF no pino ADC para redução de ruído                                                                          |
+| **Suporte a DMA**                  | Sim, via GDMA (periférico ADC mapeado com DMA)                                                                    |
+| **Restrições com Wi-Fi**           | ADC2 indisponível quando Wi-Fi ativo (usar ADC1 para amostragem contínua)                                    |
+
+## Plataforma de Aquisição (MYo_BoARD)

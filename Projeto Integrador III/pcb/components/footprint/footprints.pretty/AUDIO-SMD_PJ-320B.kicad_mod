@@ -1,0 +1,272 @@
+(footprint "AUDIO-SMD_PJ-320B"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "AUDIO-SMD_PJ-320B footprint")
+	(tags "AUDIO-SMD_PJ-320B footprint C18594")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "5d1b2c59-5b60-4a77-9a3b-9830460d8fbf")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "AUDIO-SMD_PJ-320B"
+		(at 0 6.5 0)
+		(layer "F.Fab")
+		(uuid "b524ba1a-1bf5-4e6b-8dfb-9f264180c5b7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b1d05246-9299-44ee-ab42-5c68b2913ff6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "956f4aff-668d-4d43-8c30-156c1e3b55f2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3 -5.600076)
+		(end -3 -4.481204)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9439e341-c9c4-4edd-8afd-e761ef2ed0a4")
+	)
+	(fp_line
+		(start -3 -5.600076)
+		(end 3 -5.600076)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "66c9d15e-1cb2-4bd8-b7ba-2e8454e614b9")
+	)
+	(fp_line
+		(start -3 -2.518923)
+		(end -3 2.518796)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8910fe83-43b1-4109-8997-e47c67f46935")
+	)
+	(fp_line
+		(start -3 4.481077)
+		(end -3 5.399924)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "89910984-cdbb-47af-ac35-f7c7505c5512")
+	)
+	(fp_line
+		(start -2.5 -8.600076)
+		(end 2.5 -8.600076)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d9dfc0ae-efb6-4a0a-acdb-7e772b389c0f")
+	)
+	(fp_line
+		(start -2.5 -5.600076)
+		(end -2.5 -8.600076)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "dc7ced1d-be4d-493c-a0dc-02a56992c33a")
+	)
+	(fp_line
+		(start 2.301245 3.399162)
+		(end 2.301245 4.600584)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4e58b71f-cc1c-486a-a16e-ae46fac2f583")
+	)
+	(fp_line
+		(start 2.301245 4.600584)
+		(end 2.999746 4.600584)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c425bb2d-9bb9-42af-a767-0dbbe6cd5f42")
+	)
+	(fp_line
+		(start 2.5 -5.600076)
+		(end 2.5 -8.600076)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "77d746cf-84f4-4447-8a49-07fe3d41101a")
+	)
+	(fp_line
+		(start 2.999746 3.399162)
+		(end 2.301245 3.399162)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "be834326-f08c-4ca0-a7ef-3196398a89ca")
+	)
+	(fp_line
+		(start 2.999746 4.600584)
+		(end 2.999746 5.400686)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3ff9f4e7-8a09-46b6-aec4-989bc7481fd5")
+	)
+	(fp_line
+		(start 3 -5.600076)
+		(end 3 -2.481204)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f1ced202-f58b-4d5c-bbf9-9b696f16d8a5")
+	)
+	(fp_line
+		(start 3 -0.518923)
+		(end 3 3.399162)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e3cfd5f6-484e-4f51-9391-06d6a1a1316a")
+	)
+	(fp_line
+		(start 3 5.399898)
+		(end -3 5.399924)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5acc51f5-0967-4489-9f30-b6ccf8536543")
+	)
+	(fp_circle
+		(center -5.260097 -3.440056)
+		(end -5.060198 -3.440056)
+		(stroke
+			(width 0.4)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "e2cc7d6c-6ed2-4146-b870-ed04e909b7ee")
+	)
+	(fp_circle
+		(center 0 -3.600076)
+		(end 0.175006 -3.600076)
+		(stroke
+			(width 0.350013)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "9f502505-f581-4a1e-a6e0-349ff5d574d1")
+	)
+	(fp_circle
+		(center 0 2.399924)
+		(end 0.175006 2.399924)
+		(stroke
+			(width 0.350013)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "c143917d-d727-406c-bd96-443adde4105f")
+	)
+	(pad "" np_thru_hole circle
+		(at 0 -3.600076)
+		(size 1.300025 1.300025)
+		(drill 1.300025)
+		(layers "*.Cu" "*.Mask")
+		(uuid "a532b15a-5944-46ea-a362-b31dde6bb703")
+	)
+	(pad "" np_thru_hole circle
+		(at 0 2.399924)
+		(size 1.300025 1.300025)
+		(drill 1.300025)
+		(layers "*.Cu" "*.Mask")
+		(uuid "04278b16-3bee-4fa0-8b28-023f963d2b25")
+	)
+	(pad "1" smd rect
+		(at -4 -3.5)
+		(size 3 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "0955dc45-a722-4e43-9f8d-ee0388308c2f")
+	)
+	(pad "2" smd rect
+		(at 4 -1.5)
+		(size 3 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "4d5282ad-d100-43ee-9189-08c1240aac8c")
+	)
+	(pad "3" smd rect
+		(at -4 3.5)
+		(size 3 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "7ae0fe6d-3ddf-4135-bc31-2f7a8229847b")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/AUDIO-SMD_PJ-320B.step"
+		(offset
+			(xyz 0 0 0.15)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)

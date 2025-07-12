@@ -1,0 +1,154 @@
+(footprint "RES-TH_BD3.3-L9.0-P13.00-D0.6"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "RES-TH_BD3.3-L9.0-P13.00-D0.6 footprint")
+	(tags "RES-TH_BD3.3-L9.0-P13.00-D0.6 footprint C385271")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "d38aff90-7eac-4164-95b4-6d115246e42d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "RES-TH_BD3.3-L9.0-P13.00-D0.6"
+		(at 0 3 0)
+		(layer "F.Fab")
+		(uuid "e4c90cbd-46a1-47df-a776-f8b6d38e8cab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f1937cf3-b02f-41bf-829b-a0aecc03ea7f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c074bedc-9aad-419d-bfd8-8800d188e087")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -4.572136 0)
+		(end -5.334138 0)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b6edc70b-314d-4e4c-9b84-0db9e1be9849")
+	)
+	(fp_line
+		(start -4.5 -1.649987)
+		(end -4.5 1.649987)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "79154d40-5a46-463e-9fe8-97622a2cb7cf")
+	)
+	(fp_line
+		(start -4.5 1.649987)
+		(end 4.5 1.649987)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "154210c5-4156-4522-9208-ed2125296c1c")
+	)
+	(fp_line
+		(start 4.5 -1.649987)
+		(end -4.5 -1.649987)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "72b73ea1-1956-4e56-ab59-1f84902266d1")
+	)
+	(fp_line
+		(start 4.5 1.649987)
+		(end 4.5 -1.649987)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5a8e9708-e945-41e8-9e16-73b87b7ef757")
+	)
+	(fp_line
+		(start 4.571882 0)
+		(end 5.333884 0)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6d335d89-7b42-4d4e-97e4-95deadc5e2e6")
+	)
+	(fp_circle
+		(center -6.800102 1.650013)
+		(end -6.770104 1.650013)
+		(stroke
+			(width 0.059995)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "173201fb-c11c-4cf5-a343-7982dcab280c")
+	)
+	(pad "1" thru_hole circle
+		(at -6.5 0)
+		(size 1.524003 1.524003)
+		(drill 0.914402)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "13e72535-28ac-45ff-ac5e-6482404c4ba4")
+	)
+	(pad "2" thru_hole circle
+		(at 6.5 0)
+		(size 1.524003 1.524003)
+		(drill 0.914402)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2274a4f7-a387-4957-a4bb-b00ebd3d19d6")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/RES-TH_BD3.3-L9.0-P13.00-D0.6.step"
+		(offset
+			(xyz 0 0 1.75)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)

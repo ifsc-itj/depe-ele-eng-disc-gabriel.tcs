@@ -21,11 +21,6 @@
       "showGrid": true,
       "traces": [
         {
-          "color": "rgb(0, 3, 228)",
-          "signal": "V(vo) (phase)",
-          "trace_type": 517
-        },
-        {
           "color": "rgb(228, 26, 28)",
           "signal": "V(vo) (gain)",
           "trace_type": 521

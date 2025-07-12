@@ -2122,7 +2122,7 @@
 				)
 			)
 		)
-		(property "Value" "22n"
+		(property "Value" "20n"
 			(at 52.07 19.05 90)
 			(effects
 				(font

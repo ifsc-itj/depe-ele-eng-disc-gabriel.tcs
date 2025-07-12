@@ -1,0 +1,181 @@
+(footprint "LED0402-R-RD_RED"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "LED0402-R-RD_RED footprint")
+	(tags "LED0402-R-RD_RED footprint C136765")
+	(property "Reference" "LED"
+		(at 0 -1 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "848ff909-61a0-4915-94f6-12f51a58e5e3")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Value" "REF**"
+		(at 2.5 0 0)
+		(layer "F.SilkS")
+		(uuid "b7f2dad3-497b-41ea-99b1-33a9c83ad406")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "21585f6e-c05f-4594-ab01-baa6cd29872f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8bace130-19e0-4bea-847c-ad492d461321")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -1.511303 -0.328931)
+		(end -1.257303 -0.582931)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f6c13b4f-e22f-4f19-a8d5-81e33adcbff4")
+	)
+	(fp_line
+		(start -1.511303 0.356871)
+		(end -1.511303 -0.328931)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0d8a926c-c660-4d08-8fd6-8b69d7079089")
+	)
+	(fp_line
+		(start -1.270003 0.598171)
+		(end -1.511303 0.356871)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2aba7cdc-482e-41dc-b997-8319a6ff3bc7")
+	)
+	(fp_line
+		(start -1.257303 -0.582931)
+		(end -0.2159 -0.582931)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "486c83be-7446-47a5-b822-c8c000831b06")
+	)
+	(fp_line
+		(start -1.231902 0.610871)
+		(end -1.270003 0.598171)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "48742e5f-1601-451a-8a49-53fb0aff8767")
+	)
+	(fp_line
+		(start -1.231902 0.610871)
+		(end -0.2159 0.610871)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "019dc002-2047-4666-b2ee-7c6789d1d600")
+	)
+	(fp_line
+		(start 0.1905 0.610871)
+		(end 1.257303 0.610871)
+		(stroke
+			(width 0.14986)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9d8fd1bf-c374-4465-9579-9401a1197122")
+	)
+	(fp_line
+		(start 1.257303 -0.582931)
+		(end 0.1905 -0.582931)
+		(stroke
+			(width 0.14986)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "623d4234-b7f5-46e5-ac4a-0c02ac1dfadd")
+	)
+	(fp_line
+		(start 1.257303 0.610871)
+		(end 1.257303 -0.582931)
+		(stroke
+			(width 0.14986)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "19b384a0-c3c2-4a33-9a1e-4947bfac3427")
+	)
+	(fp_circle
+		(center 0.510033 -0.249936)
+		(end 0.540005 -0.249936)
+		(stroke
+			(width 0.059995)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "9f059649-562b-43db-9293-a1b8fffa4aad")
+	)
+	(pad "1" smd rect
+		(at 0.623063 0)
+		(size 0.750013 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "1311008a-5a24-452f-aa24-2895b3cee82c")
+	)
+	(pad "2" smd rect
+		(at -0.623063 0)
+		(size 0.750013 0.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "63f8e1f0-4a24-4c0d-8282-86cffe8b4dea")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/LED0402-R-RD_RED.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

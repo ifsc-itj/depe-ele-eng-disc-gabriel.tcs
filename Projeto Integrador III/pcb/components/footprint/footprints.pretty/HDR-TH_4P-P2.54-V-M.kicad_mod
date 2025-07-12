@@ -1,0 +1,170 @@
+(footprint "HDR-TH_4P-P2.54-V-M"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "HDR-TH_4P-P2.54-V-M footprint")
+	(tags "HDR-TH_4P-P2.54-V-M footprint C2691448")
+	(property "Reference" "REF**"
+		(at 0 -2.5 0)
+		(layer "F.SilkS")
+		(uuid "396018c4-2d30-4b1c-9189-84c831f3f67a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "HDR-TH_4P-P2.54-V-M"
+		(at 0 3.270003 0)
+		(layer "F.Fab")
+		(uuid "4bcff63b-f022-4d28-952c-2bf17571c336")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f5a56002-077a-457d-814b-e47a77b91299")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "678363fa-a039-4dbf-b51c-3ebe5a1a7aab")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -5.08001 -1.270003)
+		(end -2.516485 -1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "65f56041-79c1-45c4-ad92-6c20fe96c7f9")
+	)
+	(fp_line
+		(start -5.08001 1.270003)
+		(end -5.08001 -1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "964920b2-e0aa-4f5b-a638-a9c3cbd00561")
+	)
+	(fp_line
+		(start -2.516485 -1.270003)
+		(end -2.516485 1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9b1ef914-40ba-4837-a5bf-465ef285e452")
+	)
+	(fp_line
+		(start -2.516485 -1.270003)
+		(end 5.08001 -1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "949ec434-005c-438b-8286-f4ddd1af00ae")
+	)
+	(fp_line
+		(start 5.08001 -1.270003)
+		(end 5.08001 1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0223850a-df17-46d0-9e9f-95c3322c2a30")
+	)
+	(fp_line
+		(start 5.08001 1.270003)
+		(end -5.08001 1.270003)
+		(stroke
+			(width 0.254001)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "16cdb1f2-9610-48d0-920d-70b05a204ca9")
+	)
+	(fp_circle
+		(center -5.079959 1.249987)
+		(end -5.049962 1.249987)
+		(stroke
+			(width 0.059995)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "1249c8ff-440b-40d9-8475-168721e05c8d")
+	)
+	(pad "1" thru_hole rect
+		(at -3.810008 0)
+		(size 1.7 1.7)
+		(drill 1.100025)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "bf46ea5b-2bbb-49f2-ab89-690c86968936")
+	)
+	(pad "2" thru_hole circle
+		(at -1.270003 0)
+		(size 1.7 1.7)
+		(drill 1.100025)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1864cbe1-7175-4212-b5ad-fdfcf5fac5de")
+	)
+	(pad "3" thru_hole circle
+		(at 1.270003 0)
+		(size 1.7 1.7)
+		(drill 1.100025)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "eb4a6713-1975-4773-9c05-48189c2d2218")
+	)
+	(pad "4" thru_hole circle
+		(at 3.810008 0)
+		(size 1.7 1.7)
+		(drill 1.100025)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "779e1aa3-ff36-486a-ad56-00a41d712fc1")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/HDR-TH_4P-P2.54-V-M.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

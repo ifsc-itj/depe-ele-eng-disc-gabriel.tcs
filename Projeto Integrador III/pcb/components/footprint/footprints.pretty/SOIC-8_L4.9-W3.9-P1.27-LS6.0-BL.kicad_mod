@@ -1,0 +1,199 @@
+(footprint "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL footprint")
+	(tags "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL footprint C146678")
+	(property "Reference" "REF**"
+		(at 0 0 90)
+		(layer "F.SilkS")
+		(uuid "5f025277-f787-4a94-8130-af90a1ffd030")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL"
+		(at 0 4.772416 0)
+		(layer "F.Fab")
+		(uuid "daeaffbd-201b-4ce3-b5e0-ed35c3a4aadc")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "73f58f5a-fbb4-426d-b6bf-4aeac4544b40")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "091ffdb0-11ea-402c-b6b5-f864ffb1dbf1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -2.526213 -1.521412)
+		(end 2.526213 -1.521412)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "add31d26-2b49-49b1-b317-d0ea32f9a160")
+	)
+	(fp_line
+		(start -2.526213 1.521412)
+		(end -2.526213 -1.521412)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ccb8130f-70f1-4e92-8ab0-a807b73323ea")
+	)
+	(fp_line
+		(start 2.526213 -1.521412)
+		(end 2.526213 1.521412)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "45607d96-63d0-43d1-a521-4c98bb590be6")
+	)
+	(fp_line
+		(start 2.526213 1.521412)
+		(end -2.526213 1.521412)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "54905432-40ae-4540-a40d-2231828d4965")
+	)
+	(fp_circle
+		(center -2.651511 2.772416)
+		(end -2.501397 2.772416)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "786bc6e8-82bc-4945-b858-83b9e6ec0d50")
+	)
+	(fp_circle
+		(center -2.450089 3)
+		(end -2.420117 3)
+		(stroke
+			(width 0.059995)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "b34d78e1-86dd-436e-bd40-c4a7afcf396e")
+	)
+	(fp_circle
+		(center -1.905004 0.769114)
+		(end -1.75489 0.769114)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "469beec6-a4ce-48a1-8f22-04602d588ea7")
+	)
+	(fp_circle
+		(center -1.905004 3.400051)
+		(end -1.75489 3.400051)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "bebe177b-6e90-4cf2-bfa2-218fca62f61b")
+	)
+	(pad "1" smd oval
+		(at -1.905004 2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "8705d112-dae5-448e-bb98-597feafa547e")
+	)
+	(pad "2" smd oval
+		(at -0.635001 2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "730d3eb7-39a8-430d-8eed-e93ba97198ff")
+	)
+	(pad "3" smd oval
+		(at 0.635001 2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "ad87f46a-2665-4046-b658-e6bf3472cde0")
+	)
+	(pad "4" smd oval
+		(at 1.905004 2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d67230fa-94de-4dc1-a25c-94888f964fd9")
+	)
+	(pad "5" smd oval
+		(at 1.905004 -2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "aff6a2b7-5988-4e5d-acae-cb45ddc64b34")
+	)
+	(pad "6" smd oval
+		(at 0.635001 -2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "6e58868e-b837-49d6-9cf0-3645840c3d3f")
+	)
+	(pad "7" smd oval
+		(at -0.635001 -2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "6ba0293a-d4d4-4380-bfcb-63986be00f38")
+	)
+	(pad "8" smd oval
+		(at -1.905004 -2.772416)
+		(size 0.588011 2.045009)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "a3d348a6-350c-4cac-b982-595aca055b14")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/gsthi/OneDrive/Documents/Docs/ifsc/semestre/2025.1/Projeto Integrador III/MYo_BoARD/depe-ele-eng-disc-gabriel.tcs/Projeto Integrador III/pcb/components/footprint/packages3d/SOIC-8_L4.9-W3.9-P1.27-LS6.0-BL.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
