@@ -19,7 +19,7 @@ Projeto de uma placa de aquisição de sinais biomédicos  de 3 canais desenvolv
     - [Filtro passa-baixas](#filtro-passa-baixas)
     - [Ganho e *Offset*](#ganho-e-offset)
   - [Circuito Completo (v2)](#circuito-completo-v2)
-    - [ESP-32 S3 - Características de Interesse](#esp-32-s3---características-de-interesse)
+  - [ESP-32 S3 - Características de Interesse](#esp-32-s3---características-de-interesse)
   - [Plataforma de Aquisição (MYo\_BoARD)](#plataforma-de-aquisição-myo_board)
 
 ---
@@ -150,7 +150,7 @@ Dado às necessidades de condicionamento do sinal serem cruciais à esse projeto
 A ideia final do projeto é que as placas sejam módulos independentes que podem ser concatenados, formando uma rede de aquisição de multiplos canais, a depender da aplicação e da capacidade do microcontrolador adotado para o projeto. No presente projeto a proposta são 3 canais de aquisição e a utilização do ESP-32 S3.
 </p>
 
-### ESP-32 S3 - Características de Interesse
+## ESP-32 S3 - Características de Interesse
 
 | Parâmetro                          | Valor                                                                                                             |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
