@@ -20,7 +20,7 @@ Projeto de uma placa de aquisição de sinais biomédicos  de 3 canais desenvolv
     - [Ganho e *Offset*](#ganho-e-offset)
   - [Circuito Completo (v2)](#circuito-completo-v2)
   - [ESP-32 S3 - Características de Interesse](#esp-32-s3---características-de-interesse)
-  - [Plataforma de Aquisição (MYo\_BoARD)](#plataforma-de-aquisição-myo_board)
+  - [Plataforma de Aquisição (MYo\_GRaPH)](#plataforma-de-aquisição-myo_graph)
 
 ---
 ## Introdução
@@ -137,7 +137,7 @@ Nessa etapa, o sinal é condicionado dentro dos limites de operação do ESP-32 
 Dado às necessidades de condicionamento do sinal serem cruciais à esse projeto e à algumas dificuldades encontradas durante a montagem e testes do circuito em <em>protoboard</em>, optou-se por não utilizar o filtro Notch (Duplo-T) devido ao mesmo exigir uma alimentaçã simétrica, o que trouxe dificuldades na montagem e teste em bancada, inviabilizando, então, a validação de seu funcionamento. Com isso, utilizou-se uma configuração já conhecida e validada em projetos anteriores com alimentação simétrica, mas sem o filtro analógico Notch. O esquemátio do circuito completo e o layout da placa de circuito impresso (PCI) constam nas figuras abaixo.
 </p>
 
-| <img src="./pcb/MYo_BoARD_v2/img/circ_complete.png" width="625"><br><em>Circuito Completo</em> |
+| <img src="./pcb/MYo_BoARD_v2/img/circ_complete.png" width="625"><br><em>Circuito Completo (v2)</em> |
 |:--:|
 
 | <img src="./pcb/MYo_BoARD_v2/img/3d_top.png" width="525"><br><em>Visão Superior da PCI</em> |
@@ -164,4 +164,4 @@ A ideia final do projeto é que as placas sejam módulos independentes que podem
 | **Suporte a DMA**                  | Sim, via GDMA (periférico ADC mapeado com DMA)                                                                    |
 | **Restrições com Wi-Fi**           | ADC2 indisponível quando Wi-Fi ativo (usar ADC1 para amostragem contínua)                                    |
 
-## Plataforma de Aquisição (MYo_BoARD)
+## Plataforma de Aquisição (MYo_GRaPH)
