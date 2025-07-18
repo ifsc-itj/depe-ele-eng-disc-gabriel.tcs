@@ -1,62 +1,79 @@
-#define CONVERSIONS_PER_PIN 1
-#define BUFFER_SIZE 500
+  #include <Arduino.h>
 
-uint8_t adc_pins[] = {5, 6, 7};
-uint8_t adc_pins_count = sizeof(adc_pins) / sizeof(uint8_t);
+  // Quantas conversões fazemos por pino a cada ciclo (sempre 1)
+  #define CONVERSIONS_PER_PIN 1
 
-volatile bool adc_coversion_done = false;
-adc_continuous_data_t * result = NULL;
+  // Pinos ADC disponíveis
+  uint8_t adc_pins[] = {5, 6, 7};
+  const uint8_t maxPins = sizeof(adc_pins) / sizeof(adc_pins[0]);
 
-uint16_t raw_buffer[3][BUFFER_SIZE];
-uint16_t buffer_index = 0;
+  // Vetor de pinos efetivamente usados e número de canais ativos
+  uint8_t selectedPins[maxPins];
+  uint8_t channelsToSend = maxPins;  // inicia com todos
 
-void ARDUINO_ISR_ATTR adcComplete() {
-  adc_coversion_done = true;
-}
+  // Flag disparada pela ISR quando uma nova amostra está pronta
+  volatile bool adc_conversion_done = false;
+  adc_continuous_data_t * result = nullptr;
 
-void setup() {
+  // ISR chamada pelo driver ADC
+  void IRAM_ATTR adcComplete() {
+    adc_conversion_done = true;
+  }
+
+  // (Re)configura o ADC para usar apenas os primeiros N canais
+  void updateConversion() {
+    analogContinuousStop();
+    for (uint8_t i = 0; i < channelsToSend; i++) {
+      selectedPins[i] = adc_pins[i];
+    }
+    analogContinuous(
+      selectedPins,
+      channelsToSend,
+      CONVERSIONS_PER_PIN,
+      40000,           // sample rate interno (40 kHz / canal)
+      &adcComplete
+    );
+    analogContinuousStart();
+  }
+
+  // Lê da Serial se o usuário digitou '1', '2' ou '3'
+  void processSerialInput() {
+    while (Serial.available()) {  
+      char c = Serial.read();
+      if (c >= '1' && c <= '0' + maxPins) {
+        uint8_t n = c - '0';
+        if (n != channelsToSend) {
+          channelsToSend = n;
+          updateConversion();
+        }
+      }
+    }
+  }
+
+  void setup() {
     Serial.begin(115200);
+    // Configura ADC de 12 bits e atenuação máxima (0–3.6 V)
     analogContinuousSetWidth(12);
     analogContinuousSetAtten(ADC_11db);
-    analogContinuous(adc_pins, adc_pins_count, CONVERSIONS_PER_PIN, 40000, &adcComplete);
-    analogContinuousStart();
-}
 
-void loop() {
-    if (adc_coversion_done == true) {
-        adc_coversion_done = false;
+    // Inicializa com todos os canais e já começa a amostrar
+    updateConversion();
+  }
 
-        if (analogContinuousRead(&result, 0)) {
-            for (int i = 0; i < adc_pins_count; i++) {
-                raw_buffer[i][buffer_index] = result[i].avg_read_raw;
-            }
-            buffer_index++;
+  void loop() {
+    processSerialInput();
 
-            if (buffer_index >= BUFFER_SIZE) {
-                // Opcional: parar aquisição enquanto envia/mostra dados
-                analogContinuousStop();
+    if (adc_conversion_done) {
+      adc_conversion_done = false;
 
-                
-                for (int i = 0; i < adc_pins_count; i++) {
-                    Serial.printf("%d", adc_pins[i]);
-                    for (int j = 0; j < BUFFER_SIZE; j++) {
-                        Serial.printf("%d", raw_buffer[i][j]);
-                        if (j < BUFFER_SIZE - 1)
-                            Serial.print("\t");
-                    }
-Serial.println("---"); // separador de blocos de dados
-Serial.println();
-                }
-                
-                buffer_index = 0; // Zera buffer
-
-                delay(500); // Só para facilitar visualização
-
-                // Reinicia aquisição contínua
-                analogContinuousStart();
-            }
-        } else {
-            Serial.println("Erro na leitura do ADC.");
+      // Lê o bloco de resultados (aqui só há 1 conversão por pino)
+      if (analogContinuousRead(&result, 0)) {
+        // Imprime imediatamente uma linha com N valores
+        for (uint8_t i = 0; i < channelsToSend; i++) {
+          Serial.print(result[i].avg_read_raw);
+          if (i < channelsToSend - 1) Serial.print('\t');
         }
+        Serial.println();
+      }
     }
-}
+  }

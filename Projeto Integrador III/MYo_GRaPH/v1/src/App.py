@@ -2,215 +2,248 @@ import sys
 import os
 import numpy as np
 import soundfile as sf
+import serial
+from collections import deque
 from PyQt5 import QtWidgets, QtCore
 import pyqtgraph as pg
 
-# Pasta raiz onde todas as gravações serão salvas
+# -- Configuração Serial e Parâmetros Gerais --
+SERIAL_PORT = "COM7"      # Ajuste para sua porta, ex. "/dev/ttyUSB0"
+BAUDRATE = 115200
+FS = 1000                 # taxa de amostragem esperada (Hz)
+BUFFER_SIZE = 500         # janela deslizante
+PLOT_INTERVAL_MS = 20     # redesenho em ms
+NUM_CANAIS = 3            # máximo suportado pelo ESP32
 RECORDINGS_ROOT = "recordings"
+
+# Garante existência do diretório de gravações
 os.makedirs(RECORDINGS_ROOT, exist_ok=True)
 
-# Parâmetros da simulação e gravação
-FS = 1000             # taxa de amostragem (Hz)
-BUFFER_SIZE = 500     # pontos exibidos
-UPDATE_INTERVAL_MS = 2
-NUM_CANAIS = 3
+
+class SerialReader(QtCore.QThread):
+    newData = QtCore.pyqtSignal(list)
+
+    def __init__(self, port, baud):
+        super().__init__()
+        self.ser = serial.Serial(port, baud, timeout=1)
+        self._running = True
+
+    def run(self):
+        while self._running:
+            try:
+                raw = self.ser.readline()
+                line = raw.decode('ascii', errors='ignore').strip()
+            except (serial.SerialException, PermissionError, OSError):
+                continue
+            if not line:
+                continue
+            parts = line.split('\t')[:NUM_CANAIS]
+            try:
+                vals = [float(v) for v in parts]
+                self.newData.emit(vals)
+            except ValueError:
+                continue
+
+    def stop(self):
+        self._running = False
+        self.wait()
+        self.ser.close()
+
 
 class AudioPlotWindow(QtWidgets.QWidget):
     def __init__(self, files, folder_name):
         super().__init__()
-        # Título com o nome da pasta de onde vieram os arquivos
         self.setWindowTitle(f"MYo_PLoT ({folder_name})")
         layout = QtWidgets.QVBoxLayout(self)
-        for fpath in files:
-            data, samplerate = sf.read(fpath)
-            t = np.arange(len(data)) / samplerate
-            pw = pg.PlotWidget(title=os.path.basename(fpath))
-            pw.plot(t, data, pen='c')
-            pw.setLabel('bottom', 'Tempo', 's')
-            pw.setLabel('left', 'Amplitude', '')
+        for f in files:
+            data, sr = sf.read(f)
+            t = np.arange(len(data)) / sr
+            pw = pg.PlotWidget(title=os.path.basename(f))
+            pw.plot(t, data, pen='b')
+            pw.setLabel('bottom', 'Tempo (s)')
+            pw.setLabel('left', 'Amplitude')
             layout.addWidget(pw)
+
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("MYo_GRaPH")
+        self.dark_mode = False
+        self.audio_windows = []
 
-        # Buffers e fase para dados sintéticos
-        self.buffers = [np.zeros(BUFFER_SIZE) for _ in range(NUM_CANAIS)]
-        self.t       = np.linspace(-BUFFER_SIZE/FS, 0, BUFFER_SIZE)
-        self.phase   = [0.0] * NUM_CANAIS
+        # Buffers circulares e eixo de tempo
+        self.buffers = [deque([0.0] * BUFFER_SIZE, maxlen=BUFFER_SIZE)
+                        for _ in range(NUM_CANAIS)]
+        self.t = np.linspace(-BUFFER_SIZE/FS, 0, BUFFER_SIZE)
 
-        # Widget central e layout
+        # Thread serial
+        try:
+            self.reader = SerialReader(SERIAL_PORT, BAUDRATE)
+        except serial.SerialException as e:
+            QtWidgets.QMessageBox.critical(self, "Erro Serial", str(e))
+            sys.exit(1)
+        self.reader.newData.connect(self.onSerialData)
+        self.reader.start()
+        self.ser = self.reader.ser
+
+        # UI principal
         cw = QtWidgets.QWidget()
         vbox = QtWidgets.QVBoxLayout(cw)
 
-        # Três gráficos para sinal em tempo real
+        # Configurações iniciais
+        cfg = QtWidgets.QHBoxLayout()
+        cfg.addWidget(QtWidgets.QLabel("Canais:"))
+        self.channel_spin = QtWidgets.QSpinBox()
+        self.channel_spin.setRange(1, NUM_CANAIS)
+        self.channel_spin.setValue(NUM_CANAIS)
+        cfg.addWidget(self.channel_spin)
+        cfg.addSpacing(20)
+        self.dc_checkbox = QtWidgets.QCheckBox("Remove DC")
+        cfg.addWidget(self.dc_checkbox)
+        cfg.addSpacing(20)
+        # Campo para duração em segundos, sem valores negativos
+        cfg.addWidget(QtWidgets.QLabel("Duration (s):"))
+        self.duration_spin = QtWidgets.QSpinBox()
+        self.duration_spin.setRange(0, 10000)  # permite de 0 até 10000 segundos
+        self.duration_spin.setValue(3)  # valor inicial agora 3 segundos
+        cfg.addWidget(self.duration_spin)
+        cfg.addStretch()
+        vbox.addLayout(cfg)
+
+        # Área de plots
+        self.plotWidgets = []
         self.curves = []
         for i in range(NUM_CANAIS):
             pw = pg.PlotWidget(title=f"Canal {i+1}")
             pw.showGrid(x=True, y=True)
-            pw.setLabel('bottom','Tempo','s')
-            pw.setLabel('left','Amplitude','V')
-            curve = pw.plot(self.t, self.buffers[i], pen='y')
-            vbox.addWidget(pw)
+            pw.setLabel('bottom', 'Tempo', 's')
+            pw.setLabel('left', 'Amplitude', 'V')
+            pw.getAxis('bottom').setStyle(showValues=False)
+            pw.setBackground('w')
+            curve = pw.plot(self.t, list(self.buffers[i]), pen='b')
+            vbox.addWidget(pw, 1)
+            self.plotWidgets.append(pw)
             self.curves.append(curve)
 
-        # Campo de duração
-        h_dur = QtWidgets.QHBoxLayout()
-        h_dur.addWidget(QtWidgets.QLabel("Duração (s):"))
-        self.duration_input = QtWidgets.QLineEdit("5")
-        self.duration_input.setFixedWidth(60)
-        h_dur.addWidget(self.duration_input)
-        h_dur.addStretch()
-        vbox.addLayout(h_dur)
-
-        # Botões Start / Stop / Record
-        hbtn = QtWidgets.QHBoxLayout()
+        # Botões
+        btns = QtWidgets.QHBoxLayout()
         self.start_btn  = QtWidgets.QPushButton("Start")
         self.stop_btn   = QtWidgets.QPushButton("Stop")
         self.record_btn = QtWidgets.QPushButton("Record")
+        self.mode_btn   = QtWidgets.QPushButton("Dark Mode")
+
+        # estados iniciais
         self.stop_btn.setEnabled(False)
         self.record_btn.setEnabled(False)
-        hbtn.addWidget(self.start_btn)
-        hbtn.addWidget(self.stop_btn)
-        hbtn.addWidget(self.record_btn)
-        vbox.addLayout(hbtn)
+
+        for w in (self.start_btn, self.stop_btn, self.record_btn, self.mode_btn):
+            btns.addWidget(w)
+        vbox.addLayout(btns)
 
         self.setCentralWidget(cw)
 
-        # Menu flutuante: File → Open file...
-        menubar = self.menuBar()
-        file_menu = menubar.addMenu("File")
-        open_action = QtWidgets.QAction("Open file...", self)
-        file_menu.addAction(open_action)
-        open_action.triggered.connect(self.open_files)
+        # Menu para abrir WAV
+        mb = self.menuBar()
+        fm = mb.addMenu("File")
+        act = QtWidgets.QAction("Open WAV...", self)
+        fm.addAction(act)
+        act.triggered.connect(self.open_files)
 
-        # Conecta botões
+        # Conexões de sinal
+        self.channel_spin.valueChanged.connect(self.changeChannels)
         self.start_btn.clicked.connect(self.start)
         self.stop_btn.clicked.connect(self.stop)
-        self.record_btn.clicked.connect(self.start_record)
+        self.record_btn.clicked.connect(self.record)
+        self.mode_btn.clicked.connect(self.toggleMode)
 
         # Timer de atualização
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(UPDATE_INTERVAL_MS)
-        self.timer.timeout.connect(self.update_plots)
-
-        # Estado de gravação
-        self.wav_files         = [None] * NUM_CANAIS
-        self.recording         = False
-        self.samples_to_record = 0
-        self.samples_recorded  = 0
+        self.plot_timer = QtCore.QTimer()
+        self.plot_timer.setInterval(PLOT_INTERVAL_MS)
+        self.plot_timer.timeout.connect(self.redrawPlots)
 
     def open_files(self):
         files, _ = QtWidgets.QFileDialog.getOpenFileNames(
-            self, "Open WAV files", "", "WAV Files (*.wav)"
+            self, "Open WAV files", RECORDINGS_ROOT, "WAV Files (*.wav)"
         )
         if not files:
             return
-        if len(files) > 3:
-            QtWidgets.QMessageBox.warning(
-                self, "Atenção",
-                "Selecione no máximo 3 arquivos. Serão plotados apenas os primeiros 3."
-            )
-            files = files[:3]
+        name = os.path.basename(os.path.commonpath(files).rstrip(os.sep))
+        win = AudioPlotWindow(files, name)
+        self.audio_windows.append(win)
+        win.show()
 
-        # Extrai o nome da pasta comum onde estão os arquivos
-        common_dir = os.path.commonpath(files)
-        folder_name = os.path.basename(common_dir.rstrip(os.sep))
-
-        self.audio_window = AudioPlotWindow(files, folder_name)
-        self.audio_window.show()
+    def changeChannels(self, n):
+        self.ser.reset_input_buffer()
+        self.ser.write(f"{n}\n".encode())
+        for i, pw in enumerate(self.plotWidgets):
+            self.buffers[i].clear()
+            self.buffers[i].extend([0.0] * BUFFER_SIZE)
+            pw.setVisible(i < n)
 
     def start(self):
-        """Inicia plotagem e habilita Stop e Record."""
-        self.timer.start()
+        self.changeChannels(self.channel_spin.value())
+        self.plot_timer.start()
         self.start_btn.setEnabled(False)
         self.stop_btn.setEnabled(True)
         self.record_btn.setEnabled(True)
 
     def stop(self):
-        """Para plotagem e gravação (se ocorrer)."""
-        self.timer.stop()
+        self.plot_timer.stop()
         self.start_btn.setEnabled(True)
         self.stop_btn.setEnabled(False)
         self.record_btn.setEnabled(False)
-        if self.recording:
-            self.stop_record()
 
-    def start_record(self):
-        """Cria nova subpasta em RECORDINGS_ROOT e inicia gravação."""
-        if self.recording:
-            return
-        try:
-            secs = float(self.duration_input.text())
-            assert secs > 0
-        except:
-            QtWidgets.QMessageBox.warning(self, "Duração inválida",
-                "Informe um número positivo.")
-            return
-
-        # encontra próximo índice de pasta disponível
-        existing = [
-            d for d in os.listdir(RECORDINGS_ROOT)
-            if os.path.isdir(os.path.join(RECORDINGS_ROOT, d)) and d.startswith('recording_')
-        ]
-        indices = [
-            int(d.split('_')[1]) for d in existing
-            if len(d.split('_')) == 2 and d.split('_')[1].isdigit()
-        ]
-        next_idx = max(indices) + 1 if indices else 1
-
-        # cria a subpasta para esta gravação
-        self.record_dir = os.path.join(RECORDINGS_ROOT, f"recording_{next_idx}")
-        os.makedirs(self.record_dir)
-
-        # prepara amostras
-        self.samples_to_record = int(secs * FS)
-        self.samples_recorded  = 0
-
-        # abre arquivos WAV dentro da nova subpasta
-        for i in range(NUM_CANAIS):
-            path = os.path.join(self.record_dir, f"canal{i+1}.wav")
-            self.wav_files[i] = sf.SoundFile(
-                path, mode='w',
-                samplerate=FS, channels=1, subtype='PCM_16'
-            )
-
-        self.recording = True
+    def record(self):
+        # Desabilita Start e Stop ao iniciar gravação
+        self.start_btn.setEnabled(False)
         self.stop_btn.setEnabled(False)
-        self.record_btn.setEnabled(False)
+        # Aqui você pode usar self.duration_spin.value() para definir a duração
 
-    def stop_record(self):
-        """Encerra gravação e reabilita Stop e Record."""
-        for wf in self.wav_files:
-            if wf:
-                wf.close()
-        self.wav_files = [None] * NUM_CANAIS
-        self.recording = False
-        self.stop_btn.setEnabled(True)
-        self.record_btn.setEnabled(True)
+    @QtCore.pyqtSlot(list)
+    def onSerialData(self, vals):
+        for i, v in enumerate(vals):
+            self.buffers[i].append(v)
 
-    def update_plots(self):
-        """Gera ponto, atualiza gráfico e grava se estiver gravando."""
-        for i in range(NUM_CANAIS):
-            freq = 1 + i * 0.5
-            self.phase[i] += 2 * np.pi * freq / FS
-            new_sample = np.sin(self.phase[i]) + 0.1 * np.random.randn()
-            buf = np.roll(self.buffers[i], -1)
-            buf[-1] = new_sample
-            self.buffers[i] = buf
-            self.curves[i].setData(self.t, buf)
-            if self.recording and self.wav_files[i]:
-                self.wav_files[i].write(np.array([new_sample], dtype='float32'))
+    def redrawPlots(self):
+        vis = [i for i, pw in enumerate(self.plotWidgets) if pw.isVisible()]
+        if not vis:
+            return
+        processed = []
+        for i in vis:
+            data = np.array(self.buffers[i])
+            if self.dc_checkbox.isChecked():
+                data = data - data.mean()
+            processed.append(data)
+        all_data = np.hstack(processed)
+        y0, y1 = all_data.min(), all_data.max()
+        for idx, i in enumerate(vis):
+            self.plotWidgets[i].setYRange(y0, y1)
+            self.curves[i].setData(self.t, processed[idx])
 
-        if self.recording:
-            self.samples_recorded += 1
-            if self.samples_recorded >= self.samples_to_record:
-                self.stop_record()
+    def toggleMode(self):
+        self.dark_mode = not self.dark_mode
+        bg = 'k' if self.dark_mode else 'w'
+        axisColor = 'w' if self.dark_mode else 'k'
+        for pw in self.plotWidgets:
+            pw.setBackground(bg)
+            ax0 = pw.getAxis('bottom')
+            ax1 = pw.getAxis('left')
+            ax0.setPen(axisColor); ax0.setTextPen(axisColor)
+            ax1.setPen(axisColor); ax1.setTextPen(axisColor)
+        self.mode_btn.setText("Light Mode" if self.dark_mode else "Dark Mode")
 
-if __name__ == "__main__":
+    def closeEvent(self, event):
+        self.reader.stop()
+        super().closeEvent(event)
+
+
+def main():
     app = QtWidgets.QApplication(sys.argv)
     win = MainWindow()
     win.resize(900, 700)
     win.show()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main()

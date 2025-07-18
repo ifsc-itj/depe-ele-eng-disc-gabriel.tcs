@@ -1,0 +1,83 @@
+# === Geral ===
+.DS_Store
+Thumbs.db
+*~
+*.tmp
+*.swp
+*.bak
+
+# === Arquivos de compilação e binários gerais ===
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.jar
+*.pyc
+__pycache__/
+
+# === Pastas de build e ambiente virtual ===
+/build/
+/dist/
+/bin/
+/obj/
+/out/
+venv/
+.env/
+.venv/
+env/
+
+# === Arquivos de configuração sensíveis ===
+.env
+*.ini
+config.json
+
+# === VSCode e outras IDEs ===
+.vscode/
+*.code-workspace
+.idea/
+
+# === PlatformIO ===
+.pio/
+.piolibdeps/
+
+# === Logs e relatórios ===
+*.log
+*.report
+
+# === KiCad EDA ===
+# Backups automáticos e arquivos temporários
+*-bak
+*-backup.*
+_autosave-*
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_pro-bak
+fp-info-cache
+sym-lib-table.bak
+fp-lib-table.bak
+*.net
+*.xml
+*.sim
+*-cache.lib
+
+# Arquivos gerados por plotagem/fabricação
+/Gerbers/
+/gerber/
+/Fabrication/
+/BOM/
+/Assembly/
+/Drill/
+
+# === Arquivos específicos do sistema operacional ===
+.Trashes
+ehthumbs.db
+Icon?
+
+# === Outros arquivos de mídia ou grandes ===
+*.csv
+*.xlsx
+*.wav
+*.mp3

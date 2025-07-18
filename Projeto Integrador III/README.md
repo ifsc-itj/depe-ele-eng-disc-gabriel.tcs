@@ -21,6 +21,8 @@ Projeto de uma placa de aquisição de sinais biomédicos  de 3 canais desenvolv
   - [Circuito Completo (v2)](#circuito-completo-v2)
   - [ESP-32 S3 - Características de Interesse](#esp-32-s3---características-de-interesse)
   - [Plataforma de Aquisição (MYo\_GRaPH)](#plataforma-de-aquisição-myo_graph)
+    - [Interface Inicial](#interface-inicial)
+    - [Interface Final](#interface-final)
 
 ---
 ## Introdução
@@ -165,3 +167,48 @@ A ideia final do projeto é que as placas sejam módulos independentes que podem
 | **Restrições com Wi-Fi**           | ADC2 indisponível quando Wi-Fi ativo (usar ADC1 para amostragem contínua)                                    |
 
 ## Plataforma de Aquisição (MYo_GRaPH)
+
+### Interface Inicial
+<p style="text-align: justify;">
+Para o desenvolvimento da interface, foi utilizado a linguagem Python. A dependências utilizadas constam no arquivo <code>MYo_GRaPH\v1\requirements.txt</code>. Crie um ambiente de virtual e instale as dependências utilizando o gerenciador de pacotes: <code>pip install -r requirements.txt</code>.
+
+As telas da interface inicial constam nas figuras abaixo, onde:
+</p>
+
+| Botão    | Função                                                           |
+|----------|------------------------------------------------------------------|
+| Start    | Inicia a leitura via porta serial                                |
+| Stop     | Interrompe a leitura via porta serial                            |
+| Duration | Determina o tempo de aquisição do sinal para gravação            |
+| Record   | Inicia a gravação dos 3 canais e salva em arquivos *.wav* distintos |
+
+| <img src="./img/interface_1.png" width="525"><br><em>Janela principal</em> |
+|:--:|
+
+| <img src="./img/interface_2.png" width="525"><br><em>Janela principal (Start ativado)</em> |
+|:--:|
+
+| <img src="./img/interface_3.png" width="525"><br><em>Janela de visualização de sinal gravado (sinal simulado)</em> |
+|:--:|
+
+### Interface Final
+<p style="text-align: justify;">
+Na interface final, foram adicionadas as funções de abrir arquivos <em>.wav</em> por meio do menu <code>File > Open File</code>; remover o nível DC do sinal; e selecionar a quantidade de canais a serem exibidos. Adicionou-se também a aquisição e conversão do sinal com ESP-32 S3 e amostragem do sinal via porta Serial com Python.
+</p>
+
+<p style="text-align: justify;">
+A tela da interface final consta na figura abaixo, onde:
+</p>
+
+| Botão    | Função                                                           |
+|----------|------------------------------------------------------------------|
+| Start    | Inicia a leitura via porta serial                                |
+| Stop     | Interrompe a leitura via porta serial                            |
+| Duration | Determina o tempo de aquisição do sinal para gravação (não implementado)            |
+| Record   | Inicia a gravação dos 3 canais e salva em arquivos *.wav* distintos (não implementado) |
+| Remove DC   | Quando selecionado, remove o nivel DC do sinal |
+| Canais   | Seleciona a quantidade de canais para leitura |
+| Dark Mode/Light Mode   | Alterna entre modo claro e escuro na exibição do gráfico |
+
+| <img src="./img/interface_final.png" width="525"><br><em>Janela de visualização de sinal em "tempo real" (sinal oriundo do gerador de funções)</em> |
+|:--:|
