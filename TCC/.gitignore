@@ -1,0 +1,28 @@
+# === Certificados & Chaves (NÃO versionar chaves privadas) ===
+certs/*_key.pem
+certs/*.csr
+certs/rejected/
+certs/trusted/
+
+# (se quiser versionar o cert público, remova a linha abaixo)
+certs/*.pem
+
+# === Logs do servidor ===
+*.log
+
+# === Ambiente virtual local (se criado dentro da pasta) ===
+.venv/
+venv/
+.env
+
+# === Cache Python ===
+__pycache__/
+*.py[cod]
+
+# === Arquivos temporários de execução ===
+*.pid
+*.tmp
+
+# === IDE local (se quiser separar do root) ===
+.vscode/
+.idea/

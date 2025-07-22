@@ -1,12 +1,19 @@
-# === Geral ===
+# === SO / Sistema ===
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Icon?
+.Trashes
+
+# === Temporários comuns ===
 *~
 *.tmp
 *.swp
 *.bak
+*.log
+*.report
 
-# === Arquivos de compilação e binários gerais ===
+# === Compilados / binários ===
 *.o
 *.obj
 *.exe
@@ -15,68 +22,37 @@ Thumbs.db
 *.dylib
 *.class
 *.jar
-*.pyc
-__pycache__/
 
-# === Pastas de build e ambiente virtual ===
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# === Ambientes virtuais ===
+.env
+.venv/
+venv/
+env/
+
+# === Build / Dist ===
 /build/
 /dist/
 /bin/
 /obj/
 /out/
-venv/
-.env/
-.venv/
-env/
 
-# === Arquivos de configuração sensíveis ===
-.env
-*.ini
-config.json
-
-# === VSCode e outras IDEs ===
+# === IDEs / Editores ===
 .vscode/
 *.code-workspace
 .idea/
+*.iml
 
 # === PlatformIO ===
 .pio/
 .piolibdeps/
 
-# === Logs e relatórios ===
-*.log
-*.report
-
-# === KiCad EDA ===
-# Backups automáticos e arquivos temporários
-*-bak
-*-backup.*
-_autosave-*
-*.kicad_pcb-bak
-*.kicad_sch-bak
-*.kicad_pro-bak
-fp-info-cache
-sym-lib-table.bak
-fp-lib-table.bak
-*.net
-*.xml
-*.sim
-*-cache.lib
-
-# Arquivos gerados por plotagem/fabricação
-/Gerbers/
-/gerber/
-/Fabrication/
-/BOM/
-/Assembly/
-/Drill/
-
-# === Arquivos específicos do sistema operacional ===
-.Trashes
-ehthumbs.db
-Icon?
-
-# === Outros arquivos de mídia ou grandes ===
+# === Arquivos grandes ou brutos (ajuste conforme necessidade) ===
 *.csv
 *.xlsx
 *.wav

@@ -1,0 +1,42 @@
+# === KiCad arquivos temporários / backups ===
+*-bak
+*-backup.*
+_autosave-*
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_pro-bak
+sym-lib-table.bak
+fp-lib-table.bak
+fp-info-cache
+
+# Netlists, simulações e exports intermediários
+*.net
+*.xml
+*.sim
+
+# Diretórios de fabricação / plotagem (ajuste nomes conforme seu fluxo)
+Gerbers/
+gerber/
+Fabrication/
+Drill/
+BOM/
+Assembly/
+plots/
+exports/
+
+# Arquivos de fabricação gerados (se preferir não versionar)
+*.gbr
+*.drl
+*.pos
+*.csv
+*.bom
+*.zip
+
+# Cache de bibliotecas externas
+*.cache.lib
+*-cache.lib
+
+# === Outros comuns ao projeto eletrônico ===
+__pycache__/
+*.log
+*.tmp
