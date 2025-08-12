@@ -1,0 +1,6 @@
+asyncua==1.1.2
+asyncio-mqtt==0.14.0
+paho-mqtt==1.6.1
+PyYAML==6.0.1
+loguru==0.7.2
+tenacity==8.2.3

@@ -1,0 +1,39 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+[Mm]emoryCaptures/
+[Cc]rashReports/
+[Ss]ysinfo/
+*.unitypackage
+
+# IDEs
+.vs/
+.idea/
+.Rider/
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Extras pesados (redundância, caso a pasta apareça fora de Library)
+**/PackageCache/
+**/ScriptAssemblies/
+**/Artifacts/
+**/GICache/
+**/ShaderCache/
+
+# NuGetForUnity (se usar)
+Assets/NuGet/Packages/

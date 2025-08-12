@@ -1,0 +1,4 @@
+MyTag:
+  nodeId: "ns=2;i=2"
+  type: Int32
+  topic: "PLCData/MyTag"

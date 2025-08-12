@@ -1,0 +1,114 @@
+# =========================
+# Projeto / backups / caches
+# =========================
+*.projectarchive
+*.project.backup*
+*.backup
+*.bak*
+*.tmp
+*.~*
+*.lock
+.cache/
+*.compilecache/
+*.buildcache/
+tmp/
+Temp/
+Export/
+
+# =========================
+# Artefatos compilados / build
+# =========================
+*.compiled-library
+*.compiled-library.symbol
+*.compiled-object
+*.compiled-library.tar
+*.compiled-library.zip
+*.library
+*.library.zip
+*.library.tar
+*.compiled-app
+*.app
+*.app.symbol
+*.compileinfo
+*.buildinfo
+*.boot
+*.crc
+/build/
+ /out/
+ /deploy/
+ /Generated/
+ /GeneratedCode/
+
+# =========================
+# Logs / traces / receitas / tendências / persistência
+# =========================
+*.log
+*.trace
+*.trc
+Log/
+Logs/
+Trace/
+Traces/
+Archive/
+Trend/
+Trends/
+Recipe/
+Recipes/
+PersistentStorage/
+Persistence/
+Symbolconfig/
+*.symbols
+
+# =========================
+# WebVisu / arquivos gerados
+# =========================
+WebVisu/
+webvisu.htm
+webvisu.zip
+webvisu.cfg
+
+# =========================
+# PKI / certificados do runtime
+# (NÃO versionar chaves privadas)
+# =========================
+opcua_pki/
+**/opcua_pki/
+SecurityAgent/
+security/
+certs/
+certificates/
+*.key
+*.p12
+*.pfx
+*.der
+*.cer
+*private*.pem
+*_key.pem
+*.csr
+rejected/
+trusted/
+
+# (permita apenas exemplos/dummies, se quiser)
+!certs/*.example.pem
+
+# =========================
+# Configs sensíveis do runtime
+# =========================
+CODESYSControl.cfg
+CODESYSControl_User.cfg
+CODESYSControl_*.cfg
+
+# (permita versões de exemplo)
+!CODESYSControl.example.cfg
+!CODESYSControl_User.example.cfg
+
+# =========================
+# Dados pesados (logs, exportações)
+# =========================
+*.csv
+*.xlsx
+*.xls
+*.zip
+*.7z
+*.tar
+*.tar.gz

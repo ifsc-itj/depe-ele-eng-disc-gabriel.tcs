@@ -1,28 +1,60 @@
-# === Certificados & Chaves (NÃO versionar chaves privadas) ===
-certs/*_key.pem
-certs/*.csr
-certs/rejected/
-certs/trusted/
-
-# (se quiser versionar o cert público, remova a linha abaixo)
-certs/*.pem
-
-# === Logs do servidor ===
-*.log
-
-# === Ambiente virtual local (se criado dentro da pasta) ===
-.venv/
-venv/
-.env
-
-# === Cache Python ===
-__pycache__/
-*.py[cod]
-
-# === Arquivos temporários de execução ===
-*.pid
+# =========================
+# 1) Arquivos do SO / gerais
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
 *.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+*.rej
 
-# === IDE local (se quiser separar do root) ===
-.vscode/
-.idea/
+# =========================
+# 2) Git / Merge tools
+# =========================
+*.patch
+*.diff
+
+# =========================
+# 3) Logs / PID
+# =========================
+*.log
+*.pid
+
+# =========================
+# 4) Arquivos grandes / temporários
+# =========================
+*.csv
+*.xlsx
+*.xls
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.bin
+*.hex
+*.elf
+*.exe
+*.pdb
+
+# =========================
+# 5) Infra / Docker
+# =========================
+infra/mosquitto/data/
+infra/mosquitto/log/
+infra/*/data/
+infra/*/log/
+docker-data/
+docker-logs/
+
+# =========================
+# 6) Preservar pasta Overleaf
+# =========================
+!overleaf/**
+
+# corta a Library em qualquer projeto Unity do repo
+TCC/unity/**/[Ll]ibrary/
+tcc/unity/**/[Ll]ibrary/

@@ -1,0 +1,47 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.spec
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+.env
+
+# =========================
+# Certificados & PKI
+# =========================
+certs/*_key.pem
+certs/*.csr
+certs/rejected/
+certs/trusted/
+opcua_pki/
+**/opcua_pki/
+
+# Apenas exemplos/dummies
+!certs/*.example.pem
+!config.example.yaml
+!tags.example.yaml
+
+# =========================
+# Configs sensíveis
+# =========================
+config.yaml
+tags_map.yaml
+*.yaml.local
+*.yml.local
+*.env.local
+
+# =========================
+# Logs / PID / temporários
+# =========================
+*.log
+*.pid
