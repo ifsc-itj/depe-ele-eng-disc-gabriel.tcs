@@ -1,0 +1,52 @@
+# --- Arquivos gerados pelo LaTeX/BibTeX/Biber ---
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.ilg
+*.ind
+*.idx
+*.ist
+*.lof
+*.log
+*.lot
+*.loq
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex.gz
+*.tdo
+*.toc
+*.vrb
+*.xdv
+*_minted-*/
+
+# --- Backups e temporários de editores ---
+*~
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# --- Arquivos/dirs auxiliares de build (se usar) ---
+_build/
+latex.out/
+_out/
+_cache/
+
+overleaf.log
+
+# --- Garanta que as fontes e mídias permaneçam versionadas ---
+!*.tex
+!*.sty
+!*.cls
+!*.bst
+!*.bib
+!figuras/**
+!tex/**
+!pdf/**
